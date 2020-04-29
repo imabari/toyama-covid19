@@ -41,7 +41,19 @@ counts_path = get_csv(COUNTS_URL, COUNTS_FILE)
 
 # オープンデータ作成
 df_counts = pd.read_csv(
-    counts_path, index_col="年月日", parse_dates=True, dtype={"備考": "object"},
+    counts_path,
+    index_col="年月日",
+    parse_dates=True,
+    dtype={
+        "検査実施人数": "Int64",
+        "陰性人数": "Int64",
+        "陽性人数": "Int64",
+        "一般相談件数": "Int64",
+        "帰国者相談件数": "Int64",
+        "退院者数": "Int64",
+        "死亡者数": "Int64",
+        "備考": "object",
+    },
 )
 
 # 前処理
