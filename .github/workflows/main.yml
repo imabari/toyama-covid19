@@ -24,7 +24,7 @@ jobs:
         pip install requests
         pip install pandas
       run: |
-        python3 main.py
+        python main.py
     - name: deploy
       uses: peaceiris/actions-gh-pages@v3
       with:
