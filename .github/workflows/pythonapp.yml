@@ -5,13 +5,12 @@ name: Python application
 
 on:
   schedule:
-    - cron:  '10 * * * *'
+    - cron:  '15 * * * *'
 
 jobs:
   build:
 
     runs-on: ubuntu-latest
-    steps:
     steps:
     - uses: actions/checkout@v2
     - name: Set up Python 3.8
