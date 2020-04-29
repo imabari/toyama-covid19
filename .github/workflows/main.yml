@@ -26,6 +26,7 @@ jobs:
     - name: Run script
       run: |
         python main.py
+        mv opendata.zip ./data
     - name: deploy
       uses: peaceiris/actions-gh-pages@v3
       with:
