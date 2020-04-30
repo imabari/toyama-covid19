@@ -5,7 +5,7 @@ name: Python application
 
 on:
   schedule:
-    - cron:  '0 1 * * *'
+    - cron:  '0 6 * * *'
 
 jobs:
   build:
@@ -25,6 +25,7 @@ jobs:
         pip install pandas
     - name: Run script
       run: |
+        rm -f ./data/.gitkeep
         python main.py
         mv opendata.zip ./data
     - name: deploy
