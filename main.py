@@ -76,7 +76,7 @@ df_counts["市区町村名"] = CITY_NAME
 
 # 検査実施人数
 
-df_counts["検査実施_人数"] = df_counts["県_PCR検査数"] + df_counts["医療機関_PCR検査数"] + df_counts["医療機関_抗原検査数"]
+df_counts["検査実施_人数"] = df_counts["県_PCR検査数"].fillna(0) + df_counts["医療機関_PCR検査数"].fillna(0) + df_counts["医療機関_抗原検査数"].fillna(0)
 
 test_people = df_counts.loc[
     :, ["実施_年月日", "全国地方公共団体コード", "都道府県名", "市区町村名", "検査実施_人数", "備考"]
