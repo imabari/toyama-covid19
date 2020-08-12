@@ -45,7 +45,9 @@ df_counts = pd.read_csv(
     index_col="年月日",
     parse_dates=True,
     dtype={
-        "検査実施人数": "Int64",
+        "県_PCR検査数": "Int64",
+        "医療機関_PCR検査数": "Int64",
+        "医療機関_抗原検査数": "Int64",
         "陰性人数": "Int64",
         "陽性人数": "Int64",
         "一般相談件数": "Int64",
@@ -73,7 +75,8 @@ df_counts["都道府県名"] = PREF_NAME
 df_counts["市区町村名"] = CITY_NAME
 
 # 検査実施人数
-df_counts.rename(columns={"検査実施人数": "検査実施_人数"}, inplace=True)
+
+df_counts["検査実施_人数"] = df_counts["県_PCR検査数"] + df_counts["医療機関_PCR検査数"] + df_counts["医療機関_抗原検査数"]
 
 test_people = df_counts.loc[
     :, ["実施_年月日", "全国地方公共団体コード", "都道府県名", "市区町村名", "検査実施_人数", "備考"]
