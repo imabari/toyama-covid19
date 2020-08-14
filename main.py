@@ -76,14 +76,38 @@ df_counts["市区町村名"] = CITY_NAME
 
 # 検査実施人数
 
-df_counts["検査実施_人数"] = df_counts["県_PCR検査数"].fillna(0) + df_counts["医療機関_PCR検査数"].fillna(0) + df_counts["医療機関_抗原検査数"].fillna(0)
-
 test_people = df_counts.loc[
-    :, ["実施_年月日", "全国地方公共団体コード", "都道府県名", "市区町村名", "検査実施_人数", "備考"]
+    :, ["実施_年月日", "全国地方公共団体コード", "都道府県名", "市区町村名", "県_PCR検査数", "備考"]
 ].copy()
+
+test_people.rename(columns={"県_PCR検査数": "検査実施_人数"}, inplace=True)
 
 test_people.to_csv(
     pathlib.Path(OUT_DIR, "160001_toyama_covid19_test_people.csv"),
+    index=False,
+    encoding="utf-8",
+)
+
+pcr_test_people = df_counts.loc[
+    :, ["実施_年月日", "全国地方公共団体コード", "都道府県名", "市区町村名", "医療機関_PCR検査数", "備考"]
+].copy()
+
+pcr_test_people.rename(columns={"医療機関_PCR検査数": "検査実施_人数"}, inplace=True)
+
+pcr_test_people.to_csv(
+    pathlib.Path(OUT_DIR, "160001_toyama_covid19_pcr_test_people.csv"),
+    index=False,
+    encoding="utf-8",
+)
+
+antigen_test_people = df_counts.loc[
+    :, ["実施_年月日", "全国地方公共団体コード", "都道府県名", "市区町村名", "医療機関_抗原検査数", "備考"]
+].copy()
+
+antigen_test_people.rename(columns={"医療機関_抗原検査数": "検査実施_人数"}, inplace=True)
+
+antigen_test_people.to_csv(
+    pathlib.Path(OUT_DIR, "160001_toyama_covid19_antigen_test_people.csv"),
     index=False,
     encoding="utf-8",
 )
