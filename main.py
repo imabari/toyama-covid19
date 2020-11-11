@@ -50,7 +50,7 @@ df_counts = pd.read_csv(
         "陰性人数": "Int64",
         "陽性人数": "Int64",
         "一般相談件数": "Int64",
-        "帰国者相談件数": "Int64",
+        "受診・相談センター相談件数": "Int64",
         "退院者数": "Int64",
         "死亡者数": "Int64",
         "備考": "object",
@@ -149,10 +149,10 @@ call_center.to_csv(
 
 # 帰国者・接触者相談センター相談件数
 hot_line = df_counts.loc[
-    :, ["受付_年月日", "全国地方公共団体コード", "都道府県名", "市区町村名", "帰国者相談件数"]
+    :, ["受付_年月日", "全国地方公共団体コード", "都道府県名", "市区町村名", "受診・相談センター相談件数"]
 ].copy()
 
-hot_line.rename(columns={"帰国者相談件数": "相談件数"}, inplace=True)
+hot_line.rename(columns={"受診・相談センター相談件数": "相談件数"}, inplace=True)
 hot_line.to_csv(
     pathlib.Path(OUT_DIR, "160001_toyama_covid19_hot_line.csv"),
     index=False,
